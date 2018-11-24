@@ -1,0 +1,9 @@
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\bin\Debug\netstandard2.0\Alessio.Base.deps.json
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\bin\Debug\netstandard2.0\Alessio.Base.dll
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\bin\Debug\netstandard2.0\Alessio.Base.pdb
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Debug\netstandard2.0\Alessio.Base.csproj.CoreCompileInputs.cache
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Debug\netstandard2.0\Alessio.Base.AssemblyInfoInputs.cache
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Debug\netstandard2.0\Alessio.Base.AssemblyInfo.cs
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Debug\netstandard2.0\Alessio.Base.dll
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Debug\netstandard2.0\Alessio.Base.pdb
+C:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Debug\netstandard2.0\Alessio.Base.csprojAssemblyReference.cache
