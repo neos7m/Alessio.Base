@@ -1,0 +1,16 @@
+D:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\bin\Release\netstandard2.0\Alessio.Base.deps.json
+D:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\bin\Release\netstandard2.0\Alessio.Base.dll
+D:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\bin\Release\netstandard2.0\Alessio.Base.pdb
+D:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.AssemblyInfoInputs.cache
+D:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.AssemblyInfo.cs
+D:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.dll
+D:\Users\Alessio\Documents\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.pdb
+F:\Visual Studio 2017\Projects\Alessio.Base\bin\Release\netstandard2.0\Alessio.Base.deps.json
+F:\Visual Studio 2017\Projects\Alessio.Base\bin\Release\netstandard2.0\Alessio.Base.dll
+F:\Visual Studio 2017\Projects\Alessio.Base\bin\Release\netstandard2.0\Alessio.Base.pdb
+F:\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.csprojAssemblyReference.cache
+F:\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.AssemblyInfoInputs.cache
+F:\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.AssemblyInfo.cs
+F:\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.csproj.CoreCompileInputs.cache
+F:\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.dll
+F:\Visual Studio 2017\Projects\Alessio.Base\obj\Release\netstandard2.0\Alessio.Base.pdb

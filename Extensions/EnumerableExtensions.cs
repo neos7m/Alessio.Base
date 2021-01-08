@@ -1,26 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 
-namespace Alessio.Base
+namespace Alessio.Base.Extensions
 {
-	#region Configuration enums
-	public enum CapitalizationOptions
+	public static class EnumerableExtensions
 	{
-		FirstOnly,
-		FirstOnlyTransparent, // Don't change other letters, just capitalize the first one
-		EachWord,
-		Reverse,
-		EachWordReverse
-	}
-	#endregion
-
-	public static class Extensions
-    {
-		#region IEnumerable
 		public static int ArgMin<T>(this IEnumerable<T> source, Comparison<T> comparer = null)
 		{
 			if (comparer == null)
@@ -63,7 +49,7 @@ namespace Alessio.Base
 			return argMax;
 		}
 
-		public static T ArgMin<T, TProp>(this IEnumerable<T> source, Func<T, TProp> selector) where TProp: IComparable
+		public static T ArgMin<T, TProp>(this IEnumerable<T> source, Func<T, TProp> selector) where TProp : IComparable
 		{
 			if (source.Count() == 0) return default(T);
 
@@ -103,6 +89,20 @@ namespace Alessio.Base
 			}
 
 			return argMax;
+		}
+
+		public static TProp MaxOrDefault<T, TProp>(this IEnumerable<T> source, Func<T, TProp> selector)
+		{
+			if (source.Count() == 0)
+				return default(TProp);
+			else return source.Max(selector);
+		}
+
+		public static TProp MinOrDefault<T, TProp>(this IEnumerable<T> source, Func<T, TProp> selector)
+		{
+			if (source.Count() == 0)
+				return default(TProp);
+			else return source.Min(selector);
 		}
 
 		public static string Join(this string s, IEnumerable<string> others, string separator)
@@ -213,7 +213,7 @@ namespace Alessio.Base
 
 		public static IEnumerable<T> MergeCollections<T>(this IEnumerable<IEnumerable<T>> source)
 		{
-			foreach(IEnumerable<T> collection in source)
+			foreach (IEnumerable<T> collection in source)
 			{
 				foreach (T element in collection)
 					yield return element;
@@ -226,155 +226,5 @@ namespace Alessio.Base
 			foreach (T element in source) set.Add(element);
 			return set;
 		}
-		#endregion
-
-		#region Strings
-		public static bool IsNullOrEmpty(this string s)
-		{
-			return s == null || s == "";
-		}
-
-		public static bool IsNotNullOrEmpty(this string s)
-		{
-			return !s.IsNullOrEmpty();
-		}
-
-		public static List<string> Tokenize(this string s, bool allowDigitsInWord = true)
-		{
-			if (s == null) return null;
-
-			List<string> result = new List<string>();
-			if (s == "") return result;
-
-			string last = "";
-			string others = "";
-
-			for (int i = 0; i < s.Length; i++)
-			{
-				char c = s[i];
-				if ((char.IsLetterOrDigit(c) && allowDigitsInWord) || (char.IsLetter(c)))
-				{
-					if (others != "")
-					{
-						result.Add(others);
-						others = "";
-					}
-					last += c;
-				}
-				else
-				{
-					if (others == "")
-					{
-						result.Add(last);
-						last = "";
-					}
-					others += c;
-				}
-			}
-
-			if (others == "") result.Add(last);
-			if (others != "") result.Add(others);
-			return result;
-		}
-
-		public static bool IsUppercase(this string s) => s.All(c => char.IsUpper(c));
-
-		public static bool IsLowercase(this string s) => s.All(c => char.IsLower(c));
-
-		public static bool IsCapitalized(this string s) => s.Length > 0 && char.IsUpper(s[0]) && (s.Length == 1 || char.IsLower(s[1]));
-
-		public static string Capitalize(this string s, CapitalizationOptions options = CapitalizationOptions.FirstOnly)
-		{
-			if (s.Length == 0) return "";
-			else
-			{
-				switch (options)
-				{
-					case CapitalizationOptions.FirstOnly:
-						return char.ToUpper(s[0]) + s.Substring(1).ToLower();
-					case CapitalizationOptions.EachWord:
-						return s.Split(' ').Select(word => word.Capitalize(CapitalizationOptions.FirstOnly)).JoinStrings(" ");
-					case CapitalizationOptions.Reverse:
-						return char.ToLower(s[0]) + s.Substring(1).ToUpper();
-					case CapitalizationOptions.EachWordReverse:
-						return s.Split(' ').Select(word => word.Capitalize(CapitalizationOptions.Reverse)).JoinStrings(" ");
-					default:
-						return s;
-				}
-			}
-		}
-
-		public static string InvertCase(this string s)
-		{
-			string result = "";
-			foreach(char c in s)
-			{
-				if (char.IsLower(c)) result += char.ToUpper(c);
-				else if (char.IsUpper(c)) result += char.ToLower(c);
-				else result += c;
-			}
-			return result;
-		}
-
-		public static string PadWithCharacter(this string s, char pad, int toLength, bool atEnd = false)
-		{
-			string result = s;
-			while (result.Length < toLength)
-			{
-				if (atEnd) result += pad;
-				else result = pad + result;
-			}
-			return result;
-		}
-		#endregion
-
-		#region Reflection
-		public static object NewOrDefault(this Type type)
-		{
-			ConstructorInfo ctor = type.GetConstructor(Type.EmptyTypes);
-			if (ctor != null) return ctor.Invoke(new object[] { });
-			else return type.IsValueType ? Activator.CreateInstance(type) : null;
-		}
-		
-		public static T Clone<T>(this T obj) where T: new()
-		{
-			using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
-			{
-				BinaryFormatter bf = new BinaryFormatter();
-				bf.Serialize(ms, obj);
-				return (T)bf.Deserialize(ms);
-			}
-		}
-
-		//public static void CopyOver<T>(this T source, T recipient)
-		//{
-		//	foreach (PropertyInfo info in typeof(T).GetProperties(BindingFlags.Instance))
-		//		info.SetValue(recipient, info.GetValue(source, null), null);
-		//}
-		#endregion
-
-		#region Deconstructors
-		public static (TKey, TValue) Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> kvp)
-		{
-			return (kvp.Key, kvp.Value);
-		}
-        #endregion
-
-        #region DateTime
-        public static DateTime GetMonthBegin(this DateTime date)
-        {
-            return new DateTime(date.Year, date.Month, 1);
-        }
-
-        public static DateTime GetMonthEnd(this DateTime date)
-        {
-            return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
-        }
-
-        public static bool IsMonthEnd(this DateTime date)
-        {
-            return date.Day == DateTime.DaysInMonth(date.Year, date.Month);
-        }
-        #endregion
-    }
+	}
 }

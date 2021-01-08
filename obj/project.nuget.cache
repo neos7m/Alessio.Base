@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "EnYXesfGyIxty7UebVYFMsIKGl5RthOvaHsxQEsgV1Tw5wQSDPmgDdAlnR1KSh6ALYo8TG4zTqdMa3tmWyJKXw==",
+  "success": true,
+  "projectFilePath": "F:\\Visual Studio 2017\\Projects\\Alessio.Base\\Alessio.Base.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alessio\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Alessio\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Alessio\\.nuget\\packages\\system.reflection.typeextensions\\4.7.0\\system.reflection.typeextensions.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
