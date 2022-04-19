@@ -160,5 +160,35 @@ namespace Alessio.Base.Extensions
 			}
 			return result;
 		}
+	
+		public static string SubstringSafe(this string s, int index, int length)
+		{
+			if (s.Length <= index)
+				return string.Empty;
+			else if (s.Length < index + length)
+			{
+				// prova
+				int diff = index + length - s.Length;
+				length -= diff;
+				if (length <= 0)
+					return string.Empty;
+				else return s.Substring(index, length);
+			}
+			else return s.Substring(index, length);
+		}
+
+		public static string FirstOrEmpty(this string s)
+		{
+			if (s.Length == 0)
+				return "";
+			else return s.First().ToString();
+		}
+
+		public static string LastOrEmpty(this string s)
+		{
+			if (s.Length == 0)
+				return "";
+			else return s.Last().ToString();
+		}
 	}
 }
